@@ -25,52 +25,37 @@ Li.forEach(e => {
 
 
 
+const greetings = [
+    'ہیلو',
+    'مرحبًا',
+    '你好',
+    'नमस्ते',
+    'こんにちは',
+    '¡Hola',
+    'Bonjour',
+    'Hallo',
+    'Привет',
+    'Olá',
+    'Hello',
+    "Let's Go!"
+];
 
-var main = document.querySelector(".main");
 var loader = document.querySelector(".loader");
-var WelcomeNote = document.querySelector(".hello");
-var LuckyDay = document.querySelector(".lucky");
-var Go = document.querySelector(".go");
+const greetingElement = document.querySelector('.text');
+function displayGreetings() {
 
-var Texts = ["Today is you Lucky Day","Welcome Back","What a beautifull Day","Life is beautifull","Let's Build a Website together"];
+    greetings.forEach((greeting, index) => {
+        setTimeout(() => {
+            greetingElement.innerHTML =`<li style="list-style='circle'">${greeting}</li>` ;
+            setTimeout(()=>{
+                loader.style = "display: none;"
+            },150 * greeting.length + 2000)
+        }, index * 150 );
+    });
 
-document.addEventListener("DOMContentLoaded", () => {
-    loader.style.display = "flex";
-    setTimeout(() => {
-        if (loader.style.display == "flex") {
-            WelcomeNote.style = "opacity: 1 !important; transform: none  !important;";
-            setTimeout(() => {
-                if (WelcomeNote.style.opacity == "1") {
-                    WelcomeNote.style = "opacity: 0 !important; transform: scale(0.9)  !important;";
-                        LuckyDay.innerText = Texts[Math.floor(Math.random() * Texts.length)];
-                        LuckyDay.style = "opacity: 1 !important; transform: none  !important;";
-                    setTimeout(() => {
-                        if (LuckyDay.style.opacity == "1") {
-                            WelcomeNote.style = "opacity: 0 !important; transform: scale(0.9)  !important;";
-                            LuckyDay.style = "opacity: 0 !important; transform: none  !important;";
-                            Go.style = "opacity: 1 !important; transform: none  !important;";
-                            if (Go.style.opacity == "1") {
-                                setTimeout(() => {
-                                    WelcomeNote.style = "opacity: 0 !important; transform: scale(0.9)  !important;";
-                                    LuckyDay.style = "opacity: 0 !important; transform: none  !important;";
-                                    Go.style = "opacity: 0 !important; transform: none  !important;";
-                                    offAni();
-                                }, 500)
-                            }
-                        }
-                    }, 1000)
-                }
-            }, 1000)
-        }
-    }, 1000)
-});
-
-function offAni() {
-    if(loader.style.display == "flex"){
-        loader.style.display = "none";
-    }
 }
 
+window.onload = displayGreetings;
 
 
 var to = document.querySelectorAll(".row");
@@ -82,7 +67,7 @@ to.forEach(e => {
         tos = document.querySelector(tos)
         and = document.querySelector(and)
         third = document.querySelector(third)
-        to.forEach(e=> e.classList.remove("active_bg"))
+        to.forEach(e => e.classList.remove("active_bg"))
         tos.classList.add("active_bg");
         and.classList.add("active_bg");
         third.classList.add("active_bg");
@@ -91,7 +76,84 @@ to.forEach(e => {
 })
 to.forEach(e => {
     e.addEventListener("mouseleave", ee => {
-        to.forEach(e=> e.classList.remove("active_bg"))
+        to.forEach(e => e.classList.remove("active_bg"))
     })
 
 })
+
+
+document.querySelector("h1").onclick = ()=>{
+    location.reload()
+}
+
+
+
+
+
+
+
+
+
+
+var right_c = document.querySelector(".right-c");
+
+right_c.addEventListener("mouseenter", () => {
+    var right_top = right_c.querySelector(".top");
+    right_top.style = "transform: translateY(-100%);"
+
+
+    var right_before = right_c.querySelector(".before");
+    right_before.style = "transform: rotate(90deg) translate(1003px, 106px);"
+
+    var right_after = right_c.querySelector(".after");
+    right_after.style = "transform: rotate(90deg) translate(993px, 106px);"
+
+    var hov_text = right_c.querySelector(".hov-text");
+    hov_text.style = "scale: 0;;"
+})
+
+
+right_c.addEventListener("mouseleave", () => {
+    var right_top = right_c.querySelector(".top");
+    right_top.style = "transform: translateY(0%);"
+
+
+    var right_before = right_c.querySelector(".before");
+    right_before.style = "transform: rotate(90deg) translate(203px, 106px);"
+
+    var right_after = right_c.querySelector(".after");
+    right_after.style = "transform: rotate(90deg) translate(117px, 106px);"
+
+    var hov_text = right_c.querySelector(".hov-text");
+    hov_text.style = "scale: 1;;"
+})
+
+
+
+
+
+
+function time() {
+    setInterval(() => {
+        let hour = new Date().getHours();
+        let min = new Date().getMinutes();
+        let sec = new Date().getSeconds();
+
+        min = (min < 10) ? "0" + min : min;
+        sec = (sec < 10) ? "0" + sec : sec;
+        hour = (hour < 10) ? "0" + hour : hour;
+        if(hour > 12){
+            hour = hour - 12;
+        }
+
+        if(hour >= 12){
+            document.querySelector(".clock > p").textContent = `${hour} / ${min} / ${sec}-pm`
+        }else{
+            document.querySelector(".clock > p").textContent = `${hour} / ${min} / ${sec}-am`
+            
+        }
+    }, 1000)
+};
+
+
+document.addEventListener("DOMContentLoaded", time())
