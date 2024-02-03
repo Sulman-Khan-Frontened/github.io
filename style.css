@@ -7,9 +7,13 @@
 
 
 :root {
-    --main-clr: #000;
+    --main-clr: #000000;
+    --main-hover-clr: #000000be;
 }
 
+button{
+    cursor: pointer !important;
+}
 .main {
     width: 100%;
     height: 100vh;
@@ -88,6 +92,7 @@
 .logo h1 {
     font-size: 40px;
     color: white;
+    cursor: pointer;
 }
 
 .list {
@@ -104,18 +109,19 @@
 .list li {
     transition: 0.3s linear;
     position: relative;
-    transform: translateY(5px);
+    transform: translateY(10px);
 }
 
 .list li::before {
     position: absolute;
     left: 0;
-    bottom: -5px;
+    bottom: -8px;
+    left: 0;
     height: 4px;
     border-radius: 8px;
     width: 100%;
     transform: scale(0);
-    transform-origin: center;
+    transform-origin: left;
     content: "";
     transition: 0.3s linear;
     background-color: var(--main-clr);
@@ -132,24 +138,27 @@
     cursor: pointer;
     transform: translateY(0px) scale(1.1);
 }
-.log-in-sign-up{
+
+.log-in-sign-up {
     width: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.link{
-    color: steelblue;
+
+.link {
+    color: #70b7d9;
     padding-inline: 5px;
     cursor: pointer;
+    text-decoration: underline;
 }
+
 .contents {
     width: 100%;
     height: 90%;
     display: flex;
     align-content: center;
     justify-content: center;
-
 }
 
 .content>.left,
@@ -174,11 +183,15 @@
 
 .left h2 {
     font-size: 35px;
-    background: linear-gradient(to right, #ffd61f, #2196F3, #17ddd3, #ff068f);
+    background: linear-gradient(to right, rgb(209, 92, 255), rgb(255, 127, 77), coral, #ff068f);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-size: 400% 400%;
-    animation: smoothBackgroundMove 10s ease infinite;
+    animation: smoothBackgroundMove 5s ease infinite;
+}
+
+.left h2:hover {
+    animation: none;
 }
 
 @keyframes smoothBackgroundMove {
@@ -229,16 +242,25 @@
 .buttons button:hover {
     background-color: var(--main-clr);
     color: white;
+    transform: scale(1.050);
+    box-shadow: none !important;
 }
 
 button.active_btn.active_btn {
-    background-color: var(--main-clr);
+    background: var(--main-clr);
     color: white;
+    position: relative;
+    z-index: 100;
     margin-inline-end: 70px;
+    transition: 0.2s linear;
+}
+
+.buttons>button:not(.active_btn) {
+    box-shadow: 3px 3px 1px var(--main-clr);
 }
 
 button.active_btn.active_btn:hover {
-    background-color: #000000c2;
+    background-color: var(--main-clr);
 }
 
 .right {
@@ -301,7 +323,7 @@ button.active_btn.active_btn:hover {
     z-index: 20;
     width: 100%;
     height: 100%;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -330,15 +352,6 @@ button.active_btn.active_btn:hover {
     transition: 0.3s linear;
 }
 
-.text>div {
-    opacity: 0;
-    transform: scaleX(0.9);
-    transition: 0.5s linear;
-}
-
-.text>div.go {
-    transition-duration: 0.3;
-}
 
 .about-container {
     width: 100%;
@@ -409,12 +422,14 @@ button.active_btn.active_btn:hover {
     text-align: justify;
 }
 
-.row:hover h3,.row.active_bg h3 {
-    color: black !important;
+.row:hover h3,
+.row.active_bg h3 {
+    color: var(--main-clr) !important;
 }
 
-.row:hover .icon ,.row.active_bg .icon {
-    background-color: #000000 !important;
+.row:hover .icon,
+.row.active_bg .icon {
+    background-color: var(--main-clr) !important;
 }
 
 
@@ -433,34 +448,60 @@ button.active_btn.active_btn:hover {
     background-color: white;
 }
 
-.right-c>div::before {
+.right-c>div .before {
     position: absolute;
-    content: "";
     background-color: rgb(189, 71, 130);
     width: 99%;
     left: 0;
     height: 300%;
-    clip-path: polygon(50% 26%, 22% 43%, 50% 60%);
+    clip-path: polygon(51% 26%, 10% 43%, 51% 60%);
     transition: 0.3s linear;
     transform: rotate(90deg) translate(203px, 106px);
     z-index: 10;
 }
 
-.right-c>div::after {
+.right-c>div .after {
     position: absolute;
-    content: "";
-    background-color: rgb(231, 161, 171);
+    background-color: rgb(215, 161, 231);
     width: 99%;
     left: 0;
     height: 300%;
-    clip-path: polygon(50% 26%, 22% 43%, 50% 60%);
-    transition: 0.3s linear .1s;
-    transform: rotate(90deg) translate(170px, 106px);
+    clip-path: polygon(67% 26%, 22% 43%, 66% 60%);
+    transform: rotate(90deg) translate(117px, 106px);
+    transition: 0.3s linear;
+
 }
 
-.right-c>div:hover::after,
-.right-c>div:hover::before {
-    transform: rotate(90deg) translate(-350px, 106px);
+.right-c .top {
+    position: absolute;
+    width: 85%;
+    height: 90%;
+    top: 0;
+    background-color: rgb(133, 184, 231);
+    clip-path: polygon(0% -5%, 100% 0%, 100% 100%, 50% 50%, 0% 100%);
+    transition: 0.3s linear;
+}
+
+.hov-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 25;
+    font-size: 35px;
+    transition: 0.3s linear;
+}
+
+.hov-text>p {
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.right-c:hover>.hov-text {
+    opacity: 0 !important;
 }
 
 .projects-container {
@@ -515,7 +556,7 @@ button.active_btn.active_btn:hover {
 
 .view .hover .icon svg {
     height: 50% !important;
-    fill: black;
+    fill: var(--main-clr) !important;
 }
 
 .view:hover .hover {
@@ -538,8 +579,9 @@ button.active_btn.active_btn:hover {
     border: none !important;
 }
 
-.contact-me>input::placeholder ,.contact-me>div>input::placeholder {
-    color: black;
+.contact-me>input::placeholder,
+.contact-me>div>input::placeholder {
+    color: var(--main-clr);
     font-size: 18px;
 }
 
@@ -551,7 +593,7 @@ button.active_btn.active_btn:hover {
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid var(--main-clr);
     transition: 0.3s linear;
     margin-block: 30px;
 }
@@ -572,7 +614,7 @@ button.active_btn.active_btn:hover {
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid var(--main-clr);
     transition: 0.3s linear;
 }
 
@@ -582,44 +624,69 @@ button.active_btn.active_btn:hover {
 }
 
 .contact-me>input:focus,
-.contact-me>div>input:focus {
-    background-color: black;
+.contact-me>div>input:focus,
+.contact-me>input:valid,
+.contact-me>div>input:valid {
+    background-color: var(--main-clr);
     color: white;
 
 }
-.button{
+
+.button {
     width: 80%;
     height: 50px !important;
-    background-color: black;
+    background-color: var(--main-clr);
     border-radius: 8px;
     display: flex;
     justify-content: center !important;
     align-items: center;
     cursor: pointer;
 }
-.button:hover{
-    background-color: rgba(0, 0, 0, 0.774);
+
+.button:hover {
+    background-color: var(--main-hover-clr);
 }
-.button > button{
+
+.button>button {
     background-color: transparent;
     outline: none;
     border: none;
     color: white;
 }
-.icons{
+
+.icons {
     display: flex;
     align-items: center;
     justify-content: center !important;
 }
-.icons .icon{
+
+.icons .icon {
     background-color: transparent;
     cursor: pointer;
     margin-inline: 10px;
     cursor: pointer;
 }
-.icons .icon svg{
+
+.icons .icon svg {
     transition: 0.3s linear;
 }
-.icons .icon svg:hover{
-    fill:  lightseagreen;
+
+.icons .icon svg:hover {
+    fill: var(--main-hover-clr);
+}
+.clock{
+    position: absolute;
+    width: 120px;
+    height: 15px;
+    top: 0%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.550);
+}
+.clock > p{
+    font-size: 13px;
+    color: var(--main-clr);
 }
